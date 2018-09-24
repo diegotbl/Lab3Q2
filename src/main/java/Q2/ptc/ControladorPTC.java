@@ -14,18 +14,6 @@ public class ControladorPTC {
 		this.painelCond = painelCond;
 	}
 	
-	public Sensor getSensor() {
-		return this.sensor;
-	}
-	
-	public Datacenter getDatacenter() {
-		return this.dataCenter;
-	}
-	
-	public PainelCondutor getPainelCondutor() {
-		return this.painelCond;
-	}
-
 	public void run() {
 
 		double velocidade = sensor.getVelocidade();

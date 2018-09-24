@@ -14,11 +14,17 @@ public class ControladorPTCTest {
 		Datacenter datacenterMock = mock(Datacenter.class);
 		PainelCondutor painelCondutorMock = mock(PainelCondutor.class);
 		
+		when(sensorMock.getVelocidade()).thenReturn(20.0);
+		when(sensorMock.isCruzamento()).thenReturn(false);
+		
 		ControladorPTC controlador = Mockito.spy(new ControladorPTC(sensorMock, datacenterMock, painelCondutorMock));
 		
-		assertEquals(sensorMock, controlador.getSensor());
-		assertEquals(datacenterMock, controlador.getDatacenter());
-		assertEquals(painelCondutorMock, controlador.getPainelCondutor());
+		controlador.run();
+		
+		// Se passar nesse teste significa que o sensor, datadenter e painel do condutor foram passados
+		// corretamente para o construtor do ControladorPTC e que o objeto foi criado com sucesso.
+		verify(controlador).enviaMsgNormalPainel(20.0, painelCondutorMock);
+		verify(controlador).enviaMsgDatacenter(20.0, datacenterMock);
 	}
 	
 	// Item b
